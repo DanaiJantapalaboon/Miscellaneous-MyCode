@@ -42,6 +42,7 @@ def baseMismatch():
     compare_slice = (compare[:len(template)])
     template_slice = (template[:len(compare)])
 
+    matchCount = 0
     mismatchCount = 0
     mismatchIndex = []
 
@@ -49,12 +50,15 @@ def baseMismatch():
         if compare_slice[i] != template_slice[i]:
             mismatchIndex.append(i+1)
             mismatchCount += 1
-  
+        else:
+            matchCount += 1
+
     print ("-" *120)
     print ("ลำดับเบส DNA Template : {}" .format(template_slice))
     print ("ลำดับเบส DNA Compare : {}" .format(compare_slice))
     print ("ความยาวของลำดับเบส : {}" .format(len(template_slice)))
-    print ("จำนวน DNA Mismatch : {} ({} %)" .format(mismatchCount, round(mismatchCount / len(template_slice) * 100, 2)))
+    print ("จำนวน Match : {} (Similarity {} %)" .format(matchCount, round(matchCount / (matchCount + mismatchCount) * 100, 2)))
+    print ("จำนวน Mismatch : {} ({} %)" .format(mismatchCount, round(mismatchCount / len(template_slice) * 100, 2)))
     print ("ลำดับเบสที่เกิด DNA Mismatch : {}" .format(mismatchIndex))
 
 baseMismatch()
